@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using MyFitness.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,22 @@ namespace MyFitness.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext _context;
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         [Authorize]
         public ActionResult Index()
         {
+            var userid = User.Identity.GetUserId();
+            var exist = _context.UserInfo.Where(x => x.UserId == userid).ToList();
+            if (exist.Count == 0)
+            {
+                return View("/Views/Account/UserInfo.cshtml");            
+            }
             return View();
         }
 
@@ -35,5 +50,7 @@ namespace MyFitness.Controllers
         {
             return View("/Views/Account/UserInfo.cshtml");
         }
+        
+       
     }
 }

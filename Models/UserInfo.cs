@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyFitness.Models
 {
     public class UserInfo
     {
         public int Id { get; set; }
+        [Required]
+        [StringLength(255)]
         public string NamaLengkap { get; set; }
         public int BeratBadan { get; set; }
         public int TinggiBadan { get; set; }

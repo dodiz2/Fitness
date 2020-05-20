@@ -20,7 +20,11 @@ namespace MyFitness.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<UserInfo> userInfo { get; set; }
+        public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet<JenisProgram> JenisPrograms{ get; set; }
+        public DbSet<DetailProgramViewModel> DetailPrograms { get; set; }
+        public DbSet<HasilRekomendasi> HasilRekomendasis { get; set; }
+        public DbSet<FoodInfo> FoodInfos { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
